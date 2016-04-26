@@ -206,7 +206,6 @@ questionNode* GameBoard::findQuestion(){
 }
 
 int GameBoard::answerQuestion(questionNode* qNode){
-    cout<<"msg1"<<endl;
     if(qNode == NULL){
         return -1;
     }
