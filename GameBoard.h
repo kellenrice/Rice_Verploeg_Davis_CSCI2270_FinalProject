@@ -51,7 +51,7 @@ class GameBoard
         int indexFinder(string cat_search);
 
     private:
-        string categories[4];
+        string *categories = new string[4];
         questionNode* gameBoard[4];
 };
 

@@ -42,8 +42,14 @@ bool GameBoard::buildPremade(char* fname){
     }
 
     for(int i=0; i<4; i++){
-        getline(filein, categories[i]);
-        gameBoard[i] = new questionNode(categories[i]);
+		string temp;
+        getline(filein, temp);
+        cout << "temp is " << temp << "." << endl;
+        for (int i = 0; i < temp.length(); i++)
+			cout << "\'" << temp[i] << "\'";
+		cout << endl;
+        categories[i] = temp;
+        gameBoard[i] = new questionNode(temp);
     }
 
     string tempQ, tempA;
@@ -235,12 +241,29 @@ void GameBoard::deleteNode(questionNode* qNode){
 }
 
 int GameBoard::indexFinder(string inputString){
+	cout << "input string: " << inputString << endl;
+	int returnInt = -1;
+	for (int i = 0; i < 4; i++)
+	{ 
+		cout << "----------------" << endl;
+		cout << categories[i].length() << endl;
+		cout << "\"" << categories[i] << "\"" << endl;
+		for (int j = 0; j < categories[i].length(); i++)
+		{
+			cout << "\'" << categories[j][i] << "\'";
+		}
+		cout << endl;
+	}
     for(int i=0; i<4; i++){
+		//cout << inputString << endl;
+		//cout << inputString << ": " << endl;
+		//cout << "good" << inputString << " == '" << categories[i] << ": " << endl;
         if(inputString == categories[i]){
-            return i;
+			cout << "was found" << endl;
+            returnInt = i;
         }
     }
-
-    cout<<"Category not found."<<endl;
-    return -1;
+	if (returnInt == -1)
+		cout<<"Category not found."<<endl;
+    return returnInt;
 }

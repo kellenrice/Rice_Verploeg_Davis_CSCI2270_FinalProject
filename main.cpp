@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){   //Takes in the txt filenames as arguments
         cout<<"4. Quit"<<endl;
 
         getline(cin, input);
-        choice = atoi(input.c_str());
+        choice = stoi(input);
 
         switch(choice){
         case 1:     //Load Game 1 Into Table
@@ -81,7 +81,6 @@ int main(int argc, char* argv[]){   //Takes in the txt filenames as arguments
         cout<<"2. Print Game Board"<<endl;
         cout<<"3. View Score"<<endl;
         cout<<"4. Quit"<<endl;
-
         getline(cin, input);
         choice = atoi(input.c_str());
         cout<<endl;
