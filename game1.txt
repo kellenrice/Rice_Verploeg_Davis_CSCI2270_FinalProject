@@ -1,28 +1,28 @@
-Football
-Baseball
-Basketball
-Hockey
-What number does the Broncos' Von Miller wear?
-58
-Before they were the Indianapolis Colts, this team played in which city?
-Baltimore
-Prior to entering the NFL, what college did quarterback Tom Brady play for?
-Michigan
-When was the first World Series played?
-1903
-Who currently holds the MLB record for most career home runs?
-Barry Bonds
-What city holds the team with the most World Series titles?
-New York
-What partially animated looney toons movie did Michael Jordan star in?
-Space Jam
-The NCAA crowns a college basketball champion each year in which month?
-March
-The NBA icon Shaquille O'Neal was drafted in what year as the first pick to the Magic?
-1992
-Which player holds the most NHL records with 61?
-Wayne Gretzky
-In a regulation hockey game, a double minor results in how much penalty time? (Enter answer as: m:ss)
-4:00
-How long (in feet) is a standard American ice rink?
-200
+Football#
+Baseball#
+Basketball#
+Hockey#
+What number does the Broncos' Von Miller wear?#
+58#
+Before they were the Indianapolis Colts, this team played in which city?#
+Baltimore#
+Prior to entering the NFL, what college did quarterback Tom Brady play for?#
+Michigan#
+When was the first World Series played?#
+1903#
+Who currently holds the MLB record for most career home runs?#
+Barry Bonds#
+What city holds the team with the most World Series titles?#
+New York#
+What partially animated looney toons movie did Michael Jordan star in?#
+Space Jam#
+The NCAA crowns a college basketball champion each year in which month?#
+March#
+The NBA icon Shaquille O'Neal was drafted in what year as the first pick to the Magic?#
+1992#
+Which player holds the most NHL records with 61?#
+Wayne Gretzky#
+In a regulation hockey game, a double minor results in how much penalty time? (Enter answer as: m:ss)#
+4:00#
+How long (in feet) is a standard American ice rink?#
+200#

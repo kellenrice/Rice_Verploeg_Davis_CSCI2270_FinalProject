@@ -35,39 +35,43 @@ GameBoard::~GameBoard()
 //////////////////////////////////////////
 
 bool GameBoard::buildPremade(char* fname){
+	cout << "building board" << endl;
+	bool returnBool = false;
     ifstream filein;
     filein.open(fname);
-    if (!filein.good()){    //Check to make sure file was opened successfully
-        return false;
+    if (filein.good()){    //Check to make sure file was opened successfully
+        returnBool = false;
+
+		for(int i=0; i<4; i++){
+			string temp;
+			getline(filein, temp, '#');		// Go up to the sentinle '#' to avoid the carriage return character '\r'
+			categories[i] = temp;
+			gameBoard[i] = new questionNode(temp);
+			getline(filein, temp);	// Get rid of '\r\n'
+		}
+
+		string tempQ, tempA;
+
+		for(int i=0; i<4; i++){
+			for(int j=0; j<3; j++){
+				string ignoreString;
+				getline(filein, tempQ,'#');
+				getline(filein, ignoreString);
+				getline(filein, tempA,'#');
+				getline(filein, ignoreString);
+
+				questionNode* tempNode = gameBoard[i];
+				while(tempNode->next != NULL){
+					tempNode = tempNode->next;
+				}
+				tempNode->next = new questionNode(tempQ, tempA, categories[i], 20*j+20);
+				tempNode->next->prev = tempNode;
+			}
+		}
     }
-
-    for(int i=0; i<4; i++){
-		string temp;
-        getline(filein, temp);
-        cout << "temp is " << temp << "." << endl;
-        for (int i = 0; i < temp.length(); i++)
-			cout << "\'" << temp[i] << "\'";
-		cout << endl;
-        categories[i] = temp;
-        gameBoard[i] = new questionNode(temp);
-    }
-
-    string tempQ, tempA;
-
-    for(int i=0; i<4; i++){
-        for(int j=0; j<3; j++){
-            getline(filein, tempQ);
-            getline(filein, tempA);
-
-            questionNode* tempNode = gameBoard[i];
-            while(tempNode->next != NULL){
-                tempNode = tempNode->next;
-            }
-            tempNode->next = new questionNode(tempQ, tempA, categories[i], 20*j+20);
-            tempNode->next->prev = tempNode;
-        }
-    }
-
+    else 
+		cout << "file not opened succesfuly" << endl;
+	filein.close();
     return true;
 }
 
@@ -241,25 +245,9 @@ void GameBoard::deleteNode(questionNode* qNode){
 }
 
 int GameBoard::indexFinder(string inputString){
-	cout << "input string: " << inputString << endl;
 	int returnInt = -1;
-	for (int i = 0; i < 4; i++)
-	{ 
-		cout << "----------------" << endl;
-		cout << categories[i].length() << endl;
-		cout << "\"" << categories[i] << "\"" << endl;
-		for (int j = 0; j < categories[i].length(); i++)
-		{
-			cout << "\'" << categories[j][i] << "\'";
-		}
-		cout << endl;
-	}
     for(int i=0; i<4; i++){
-		//cout << inputString << endl;
-		//cout << inputString << ": " << endl;
-		//cout << "good" << inputString << " == '" << categories[i] << ": " << endl;
         if(inputString == categories[i]){
-			cout << "was found" << endl;
             returnInt = i;
         }
     }
