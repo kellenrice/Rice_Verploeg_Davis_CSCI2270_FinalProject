@@ -35,33 +35,43 @@ GameBoard::~GameBoard()
 //////////////////////////////////////////
 
 bool GameBoard::buildPremade(char* fname){
+	cout << "building board" << endl;
+	bool returnBool = false;
     ifstream filein;
     filein.open(fname);
-    if (!filein.good()){    //Check to make sure file was opened successfully
-        return false;
+    if (filein.good()){    //Check to make sure file was opened successfully
+        returnBool = false;
+
+		for(int i=0; i<4; i++){
+			string temp;
+			getline(filein, temp, '#');		// Go up to the sentinle '#' to avoid the carriage return character '\r'
+			categories[i] = temp;
+			gameBoard[i] = new questionNode(temp);
+			getline(filein, temp);	// Get rid of '\r\n'
+		}
+
+		string tempQ, tempA;
+
+		for(int i=0; i<4; i++){
+			for(int j=0; j<3; j++){
+				string ignoreString;
+				getline(filein, tempQ,'#');
+				getline(filein, ignoreString);
+				getline(filein, tempA,'#');
+				getline(filein, ignoreString);
+
+				questionNode* tempNode = gameBoard[i];
+				while(tempNode->next != NULL){
+					tempNode = tempNode->next;
+				}
+				tempNode->next = new questionNode(tempQ, tempA, categories[i], 20*j+20);
+				tempNode->next->prev = tempNode;
+			}
+		}
     }
-
-    for(int i=0; i<4; i++){
-        getline(filein, categories[i]);
-        gameBoard[i] = new questionNode(categories[i]);
-    }
-
-    string tempQ, tempA;
-
-    for(int i=0; i<4; i++){
-        for(int j=0; j<3; j++){
-            getline(filein, tempQ);
-            getline(filein, tempA);
-
-            questionNode* tempNode = gameBoard[i];
-            while(tempNode->next != NULL){
-                tempNode = tempNode->next;
-            }
-            tempNode->next = new questionNode(tempQ, tempA, categories[i], 20*j+20);
-            tempNode->next->prev = tempNode;
-        }
-    }
-
+    else 
+		cout << "file not opened succesfuly" << endl;
+	filein.close();
     return true;
 }
 
@@ -235,12 +245,13 @@ void GameBoard::deleteNode(questionNode* qNode){
 }
 
 int GameBoard::indexFinder(string inputString){
+	int returnInt = -1;
     for(int i=0; i<4; i++){
         if(inputString == categories[i]){
-            return i;
+            returnInt = i;
         }
     }
-
-    cout<<"Category not found."<<endl;
-    return -1;
+	if (returnInt == -1)
+		cout<<"Category not found."<<endl;
+    return returnInt;
 }
